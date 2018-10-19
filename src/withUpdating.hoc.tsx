@@ -1,4 +1,4 @@
-import { SFC, CSSProperties } from 'react'
+import React, { SFC, CSSProperties } from 'react'
 import { compose, withProps, withState } from 'recompose'
 
 interface IUpdateOptions {
