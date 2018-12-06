@@ -1,6 +1,6 @@
 {
   "name": "react-web-hocs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Common React Higher Order Components",
   "main": "./dist/index.js",
   "files": [
