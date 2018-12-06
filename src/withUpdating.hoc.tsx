@@ -17,16 +17,13 @@ const withUpdating = ({
   }
 
   return (
-    <div style={styles.container}>
+    <div>
       <WrappedComponent {...rest} />
       {isUpdating && <LoadingComponent style={mergedStyle} />}
     </div>
   )
 }
 const styles = {
-  container: {
-    display: 'flex'
-  },
   updating: {
     position: 'absolute',
     top: 0,
