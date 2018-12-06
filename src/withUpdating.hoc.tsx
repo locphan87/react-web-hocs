@@ -11,22 +11,30 @@ const withUpdating = ({
   component: LoadingComponent,
   updatingStyle
 }) => WrappedComponent => ({ isUpdating, ...rest }) => {
+  const mergedStyle = {
+    ...styles.updating,
+    updatingStyle
+  }
+
   return (
     <div style={styles.container}>
       <WrappedComponent {...rest} />
-      {isUpdating && (
-        <LoadingComponent style={[styles.updating, updatingStyle]} />
-      )}
+      {isUpdating && <LoadingComponent style={mergedStyle} />}
     </div>
   )
 }
 const styles = {
   container: {
-    flex: 1
+    display: 'flex'
   },
   updating: {
-    backgroundColor: 'white',
-    opacity: 0.7
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    height: '100%',
+    display: 'flex',
+    width: '100%',
+    background: 'rgba(255,255,255,0.5)'
   }
 }
 
