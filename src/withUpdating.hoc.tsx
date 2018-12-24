@@ -2,7 +2,7 @@ import React, { SFC, CSSProperties } from 'react'
 import { compose, withProps, withState } from 'recompose'
 
 interface IUpdateOptions {
-  updates: string[]
+  updates?: string[]
   component: SFC<any>
   updatingStyle?: CSSProperties
   updatingName?: string
@@ -57,7 +57,7 @@ const simulatePending = updates => props =>
     return acc
   }, {})
 
-const withManualUpdating = ({ component, updatingStyle }: IUpdateOptions) =>
+const withManualUpdating = ({ component, updatingStyle }: any) =>
   compose(
     withState('isManualUpdating', 'setManualUpdating', false),
     withUpdating({
