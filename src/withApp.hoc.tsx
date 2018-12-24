@@ -1,4 +1,4 @@
-import { SFC, CSSProperties } from 'react'
+import { CSSProperties } from 'react'
 import insertIf from 'insert-if'
 import { isNonEmptyArray, isNilOrEmpty } from 'ramda-adjunct'
 import { compose } from 'recompose'
@@ -8,7 +8,7 @@ import { withLoadingCreator, ILoadingOptions } from './withLoading.hoc'
 import { withUpdatingCreator, IUpdateOptions } from './withUpdating.hoc'
 
 interface IWithAppCreator {
-  loadingComponent: SFC<any>
+  loadingComponent: any
   loadingPredicate(obj: any): boolean
   updatingStyle?: CSSProperties
 }
@@ -25,7 +25,7 @@ const withAppCreator = ({
 }: IWithAppCreator) => ({
   updates = [],
   renderWhen: renderBranches = []
-}: IWithApp = {}) => (WrappedComponent: SFC<any>) => {
+}: IWithApp = {}) => (WrappedComponent: any) => {
   const loadingOptions: ILoadingOptions = {
     predicate: loadingPredicate,
     component: loadingComponent

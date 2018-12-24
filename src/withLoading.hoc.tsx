@@ -1,9 +1,8 @@
-import { SFC } from 'react'
 import { branch, renderComponent } from 'recompose'
 
 interface ILoadingOptions {
   predicate(obj: any): boolean
-  component: SFC<any>
+  component: any
 }
 
 const withLoadingCreator = (options: ILoadingOptions) => {
