@@ -5,12 +5,14 @@ interface IUpdateOptions {
   updates: string[]
   component: SFC<any>
   updatingStyle?: CSSProperties
+  updatingName?: string
 }
 
 const withUpdating = ({
   component: LoadingComponent,
-  updatingStyle
-}) => WrappedComponent => ({ isUpdating, ...rest }) => {
+  updatingStyle,
+  updatingName = 'isUpdating'
+}) => WrappedComponent => props => {
   const mergedStyle = {
     ...styles.updating,
     updatingStyle
@@ -18,8 +20,8 @@ const withUpdating = ({
 
   return (
     <div>
-      <WrappedComponent {...rest} />
-      {isUpdating && <LoadingComponent style={mergedStyle} />}
+      <WrappedComponent {...props} />
+      {props[updatingName] && <LoadingComponent style={mergedStyle} />}
     </div>
   )
 }
@@ -55,6 +57,16 @@ const simulatePending = updates => props =>
     return acc
   }, {})
 
+const withManualUpdating = ({ component, updatingStyle }: IUpdateOptions) =>
+  compose(
+    withState('isManualUpdating', 'setManualUpdating', false),
+    withUpdating({
+      component,
+      updatingStyle,
+      updatingName: 'isManualUpdating'
+    })
+  )
+
 const withUpdatingCreator = ({
   updates,
   component,
@@ -69,4 +81,4 @@ const withUpdatingCreator = ({
     })
   )
 
-export { withUpdatingCreator, IUpdateOptions }
+export { withManualUpdating, withUpdatingCreator, IUpdateOptions }
