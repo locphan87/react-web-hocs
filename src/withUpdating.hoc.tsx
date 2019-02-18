@@ -7,6 +7,9 @@ interface IUpdateOptions {
   updatingStyle?: CSSProperties
   updatingName?: string
 }
+interface Styles {
+  [name: string]: CSSProperties
+}
 
 const withUpdating = ({
   component: LoadingComponent,
@@ -19,15 +22,18 @@ const withUpdating = ({
   }
 
   return (
-    <div>
+    <div style={styles.container}>
       <WrappedComponent {...props} />
       {props[updatingName] && <LoadingComponent style={mergedStyle} />}
     </div>
   )
 }
-const styles = {
+const styles: Styles = {
+  container: {
+    position: 'relative'
+  },
   updating: {
-    position: 'absolute',
+    position: 'fixed',
     top: 0,
     left: 0,
     height: '100%',
